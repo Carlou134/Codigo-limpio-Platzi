@@ -57,15 +57,22 @@ namespace ToDo
                 string taskNumberToDelete = Console.ReadLine();
                 // Remove one position
                 int indexToRemove = Convert.ToInt32(taskNumberToDelete) - 1;
-                if (indexToRemove > -1 && TaskList.Count > 0)
+
+                if(indexToRemove > (TaskList.Count - 1) || indexToRemove < 0)
+                    Console.WriteLine("Numero de tarea seleccionada no es válida");
+                else
                 {
-                    string taskToRemove = TaskList[indexToRemove];
-                    TaskList.RemoveAt(indexToRemove);
-                    Console.WriteLine("Tarea " + taskToRemove + " eliminada");
+                    if (indexToRemove > -1 && TaskList.Count > 0)
+                    {
+                        string taskToRemove = TaskList[indexToRemove];
+                        TaskList.RemoveAt(indexToRemove);
+                        Console.WriteLine("Tarea " + taskToRemove + " eliminada");
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("Ha ocurrido un error al eliminar la tarea");
             }
         }
 
@@ -74,12 +81,18 @@ namespace ToDo
             try
             {
                 Console.WriteLine("Ingrese el nombre de la tarea: ");
-                string taskName = Console.ReadLine();
-                TaskList.Add(taskName);
-                Console.WriteLine("Tarea registrada");
+                string taskName = Console.ReadLine()!.Trim();
+                if(String.IsNullOrEmpty(taskName) || String.IsNullOrWhiteSpace(taskName))
+                    Console.WriteLine("Debe ingresar un nombre válido");
+                else
+                {
+                    TaskList.Add(taskName);
+                    Console.WriteLine("Tarea registrada");
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("Ha ocurrido un error al añadir la tarea");
             }
         }
 
