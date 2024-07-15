@@ -61,7 +61,7 @@ void ShowMenuRemove()
     }
     catch (Exception ex)
     {
-        Console.WriteLine("Ha ocurrido un error al eliminar la tarea");
+        Console.WriteLine($"Ha ocurrido un error al eliminar la tarea: {ex.Message}");
     }
 }
 
@@ -81,7 +81,7 @@ void ShowMenuAdd()
     }
     catch (Exception ex)
     {
-        Console.WriteLine("Ha ocurrido un error al añadir la tarea");
+        Console.WriteLine($"Ha ocurrido un error al añadir la tarea: {ex.Message}");
     }
 }
 
